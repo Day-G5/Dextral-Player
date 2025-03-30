@@ -204,6 +204,7 @@ function createPlayer () {
     const player = document.createElement('div');
     player.id = 'player';
 
+    //SeekBar section
     const seekBar = document.createElement('input');
     seekBar.id = 'seekBar';
     seekBar.setAttribute('type', 'range');
@@ -211,12 +212,17 @@ function createPlayer () {
     seekBar.setAttribute('max', '100');
 
     //Load the value from local storage
-    const value = localStorage.getItem('seekBarValue');
-    seekBar.setAttribute('value', value);
+    const songValue = localStorage.getItem('seekBarValue');
+    if(songValue === null) {
+        seekBar.setAttribute('value', '0');
+    }
+    else{
+        seekBar.setAttribute('value', songValue);
+    }
 
     seekBar.addEventListener('input', () => {
-        const value = seekBar.value;
-        localStorage.setItem('seekBarValue', value);
+        const songValue = seekBar.value;
+        localStorage.setItem('seekBarValue', songValue);
     });
 
     const seekBarLabel = document.createElement('div');
@@ -238,8 +244,9 @@ function createPlayer () {
 
     seeker.style.left = (seekBar.value / 100 * seekBarLabelWidth) + 'px';
 
+    let calculatedValue;
+
     seekBarLabel.addEventListener('mousedown', (e) => {
-        console.log('here')
         overlay = document.createElement('div');
         overlay.id = 'overlay';
 
@@ -261,11 +268,13 @@ function createPlayer () {
             const seekerPosition = Math.min(Math.max(e.x - parseInt(seekBarLabelStyle.left) + (parseInt(seekBarLabelStyle.width) / 2), minPosition), maxPosition);
             seeker.style.left = seekerPosition + 'px';
 
-            seekBar.value = seekerPosition / seekBarLabelWidth * 100;
-            localStorage.setItem('seekBarValue', seekBar.value);
+            calculatedValue = seekerPosition / seekBarLabelWidth * 100;
         });
 
         const removeOverlay = () => {
+            seekBar.value = calculatedValue;
+            localStorage.setItem('seekBarValue', seekBar.value);
+
             if (overlay && overlay.parentNode) {
                 body.removeChild(overlay);
             }
@@ -276,17 +285,95 @@ function createPlayer () {
         overlay.addEventListener('mouseup', removeOverlay);
         overlay.addEventListener('mouseleave', removeOverlay);
     });
+    
+    //Play Buttons Section
+    // Volume Section
+    const volumeBar = document.createElement('input');
+    volumeBar.id = 'volumeBar';
 
-    seeker.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        const mouseEvent = new MouseEvent('mousedown', {
-            bubbles: true,
-            cancelable: true,
-            clientX: e.clientX,
-            clientY: e.clientY
-        });
-        seekBarLabel.dispatchEvent(mouseEvent);
+    volumeBar.setAttribute('type', 'range');
+    volumeBar.setAttribute('min', '0');
+    volumeBar.setAttribute('max', '100');
+
+    //Load the value from local storage
+    const volumeValue = localStorage.getItem('volumeBarValue');
+
+    if(volumeValue === null) {
+        volumeBar.setAttribute('value', '100');
+    }
+    else{
+        volumeBar.setAttribute('value', volumeValue);
+    }
+
+    volumeBar.addEventListener('input', () => {
+        const volumeValue = volumeBar.value;
+        localStorage.setItem('volumeBarValue', volumeValue);
     });
+    
+    const volumeBarLabel = document.createElement('div');
+    volumeBarLabel.id = 'volumeBarLabel';
+
+    const volumeBarBall = document.createElement('div');
+    volumeBarBall.id = 'volumeBarBall';
+    volumeBarLabel.appendChild(volumeBarBall);
+
+    player.appendChild(volumeBar);
+    player.appendChild(volumeBarLabel);
+
+
+    const volumeBarLabelStyle = getComputedStyle(volumeBarLabel);
+    
+    let volumeBarLabelWidth = parseFloat(volumeBarLabelStyle.width);
+
+    volumeBarBall.style.left = (volumeBar.value / 100 * volumeBarLabelWidth) + 'px';
+
+    let calculatedVolumeValue;
+
+    volumeBarLabel.addEventListener('mousedown', (e) => {
+        overlay = document.createElement('div');
+        overlay.id = 'overlay';
+        
+        body.appendChild(overlay);
+
+        isDragging = true;
+
+        const minPosition = 0;
+        const maxPosition = volumeBarLabelWidth;
+        
+        //Taking into calculation the width of the volumeBarLabel and the transform property
+        const volumeBarBallPosition = Math.min(Math.max(e.x - parseInt(volumeBarLabelStyle.left), minPosition), maxPosition);
+        
+        volumeBarBall.style.left = volumeBarBallPosition + 'px';
+        volumeBar.value = volumeBarBallPosition / volumeBarLabelWidth * 100;
+        localStorage.setItem('volumeBarValue', volumeBar.value);
+        
+        overlay.addEventListener('mousemove', (e) => {
+            const volumeBarBallPosition = Math.min(Math.max(e.x - parseInt(volumeBarLabelStyle.left), minPosition), maxPosition);
+            
+            volumeBarBall.style.left = volumeBarBallPosition + 'px';
+            volumeBar.value = volumeBarBallPosition / volumeBarLabelWidth * 100;
+            
+            calculatedVolumeValue = volumeBarBallPosition / volumeBarLabelWidth * 100;
+        });
+
+        const removeOverlay = () => {
+            volumeBar.value = calculatedVolumeValue;
+            localStorage.setItem('volumeBarValue', volumeBar.value);
+
+            if (overlay && overlay.parentNode) {
+                body.removeChild(overlay);
+            }
+            isDragging = false;
+            overlay.removeEventListener('mouseup', removeOverlay);
+        };
+    
+        overlay.addEventListener('mouseup', removeOverlay);
+        overlay.addEventListener('mouseleave', removeOverlay);
+    })
+}
+
+function createVolumeBar () {
+
 }
 
 createTitleBar();

@@ -24,6 +24,11 @@
     --seekbar-height: 5px;
     --seekbar-width: 500px;
 
+    --volume-bar-height: 5px;
+    --volume-bar-width: 100px;
+
+    --seekbar-color: #636363;
+
     --iframe-width: 100dvw;
     --iframe-height: calc(var(--body-height) - var(--title-bar-height) - var(--nav-bar-height) - var(--player-height));
 
@@ -129,36 +134,18 @@ body {
     background-color: var(--color-player-base);
 }
 
+#seekBar {
+    display: none;
+}
+
 #seekBarLabel {
     width: var(--seekbar-width);
     height: var(--seekbar-height);
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    background-color: green;
-}
-
-#seekBarLabel::before {
-    content: "";
-    height: var(--seekball-height);
-    aspect-ratio: 1 / 1;
-    position: absolute;
-    left: 0%;
-    top: 50%;
-    transform: translate(-100%, -50%);
-
-    /* background-color: red; */
-}
-
-#seekBarLabel::after {
-    content: "";
-    height: var(--seekball-height);
-    aspect-ratio: 1 / 1;
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translate(0%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: var(--seekbar-color);
 }
 
 #seeker {
@@ -168,10 +155,34 @@ body {
     aspect-ratio: 1 / 1;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    pointer-events: none;
     will-change: transform;
+    background-color: var(--color-primary-accent);
+    cursor: pointer;
+}
 
-    background-color: red;
+#volumeBar {
+    display: none;
+}
+
+#volumeBarLabel {
+    width: var(--volume-bar-width);
+    height: var(--volume-bar-height);
+    position: absolute;
+    background-color: var(--seekbar-color);
+
+    right: 75px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#volumeBarBall {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: var(--seekball-height);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background-color: var(--color-primary-accent);
 }
 
 #overlay {
@@ -180,7 +191,5 @@ body {
     top: 0;
     width: var(--overlay-width);
     height: var(--overlay-height);
-
-    background-color: #ecf01444;
 }
 
