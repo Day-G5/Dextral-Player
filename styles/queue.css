@@ -1,0 +1,179 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+@font-face {
+    font-family: Nunito;
+    src: url(../fonts/Nunito/Nunito-VariableFont_wght.ttf);
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+    padding-bottom: 40px;
+    align-items: center;
+}
+
+#queued-background {
+    position: absolute;
+    object-fit: cover;
+    height: 102%;
+    width: 102%;
+    left: -1%;
+    top: -2%;
+    z-index: 0;
+    filter: blur(10px);
+}
+
+.background-shader {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.4;
+}
+
+#queued-container {
+    height: 50%;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: row;
+    width: 99%;
+    gap: 80px;
+    align-items: center;
+    margin-top: 10%;
+    padding-left: 40px;
+    padding-right: 40px;
+    z-index: 1;
+}
+
+.song-holder{
+    height: 100px;
+    width: 370px;
+    background-color: rgba(24, 23, 23, 0.7);
+    border-radius: 15px;
+    flex-shrink: 0;
+    position: relative;
+
+    transition: left 20ms linear, top 20ms linear;
+}
+
+.song-name {
+    font-family:'Nunito', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    position: absolute;
+    left: 15px; 
+    top: 15px;
+    color: white;
+    width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.song-name-with-image {
+    left: 110px;
+    width: 225px;
+}
+
+.play_button {
+    position: absolute;
+    background-color: rgba(64, 226, 193, 1);
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    left: 100%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 5px;
+    padding-top: 3px;
+}
+
+.background-container {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    /* height: 640px; */
+    height: 100%;
+    width: 100%;
+    /* background-color: rgba(64, 226, 193, 0.2); */
+    background: linear-gradient(#642bff, #ff22e6);
+}
+
+.song-image {
+    position: absolute;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    flex-shrink: 0;
+    border-radius: inherit;
+    left: 0%;
+    top: 0%;
+    object-fit: cover;
+}
+
+.scroll-left {
+    display: none;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(64, 226, 193, 1);
+    z-index: 2;
+    left: 30px;
+    top: 40%;
+    border-radius: 50%;
+    animation: bob 6s infinite;
+    animation-delay: 2s;
+}
+
+.scroll-right {
+    display: none;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(64, 226, 193, 1);
+    right: 30px;
+    top: 40%;
+    border-radius: 50%;
+    animation: bob 6s infinite;
+    animation-delay: 2s;
+}
+
+@keyframes bob {
+    0% {
+        transform: translateY(0%);
+    }
+    25% {
+        transform: translateY(-25%);
+    }
+    75% {
+        transform: translateY(25%);
+    }
+}
+
+.play-pause-svg {
+    height: 25px;
+}
+
+::-webkit-scrollbar {
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(52, 52, 52, 1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    /* background: linear-gradient(#642bff, #ff22e6); */
+    background-color: rgb(34, 255, 89);
+    border-radius: 10px;
+}

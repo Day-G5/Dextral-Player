@@ -1,0 +1,18 @@
+{
+  "name": "electron",
+  "productName": "DayG",
+  "version": "1.0.0",
+  "description": "DayG Music Player",
+  "main": "musicapp.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "DayG",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^30.0.6",
+    "ffmpeg-probe": "^1.0.6",
+    "ffprobe": "^1.1.2",
+    "music-metadata": "^7.14.0"
+  }
+}

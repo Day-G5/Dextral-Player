@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="169.54419mm"
+   height="192.97192mm"
+   viewBox="0 0 169.54419 192.97192"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="Maximixe ink.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.32"
+     inkscape:cx="189.0625"
+     inkscape:cy="548.4375"
+     inkscape:window-width="1366"
+     inkscape:window-height="745"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-8.846015,-43.552741)">
+    <circle
+       style="fill:none;fill-rule:evenodd;stroke:#d9e4ec;stroke-width:18.5421;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:445.011, 445.011;stroke-dashoffset:185.421;stroke-opacity:1"
+       id="circle33"
+       cx="-97.660118"
+       cy="-124.28301"
+       transform="scale(-1)"
+       r="71.45858" />
+    <path
+       style="fill:none;stroke-width:2.0045"
+       d="m 291.65467,501.79955 c -5.51238,-1.03604 -17.68971,-5.56721 -27.06074,-10.06928 -29.46814,-14.15724 -52.7783,-42.28464 -61.16668,-73.8073 -3.76227,-14.13822 -3.76227,-43.96194 0,-58.10016 11.59778,-43.58327 50.37322,-78.14778 94.95839,-84.64614 48.26836,-7.03518 97.83659,19.06575 118.84837,62.58149 9.26093,19.17955 11.92932,30.61306 11.92932,51.11473 0,31.77313 -10.61884,57.45528 -33.24731,80.41013 -27.47437,27.87065 -65.64342,39.77461 -104.26135,32.51653 z"
+       id="path150"
+       transform="scale(0.26458333)" />
+    <ellipse
+       style="fill:none;fill-rule:evenodd;stroke:#d9e4ec;stroke-width:20.3462;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="circle2730"
+       cx="87.324829"
+       cy="157.63243"
+       rx="68.305717"
+       ry="68.719131" />
+  </g>
+</svg>

@@ -1,0 +1,100 @@
+@font-face {
+    font-family: Nunito;
+    src: url(../fonts/Nunito/Nunito-VariableFont_wght.ttf);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    font-family:'Nunito', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* background-color: yellow; */
+}
+
+.song-nav {
+    height: 100%;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* background-color: purple; */
+}
+
+.song-nav li {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: hsl(0, 38%, 84%);
+}
+
+.song-nav label {
+    display: flex;
+    width: 100%;
+    height: 30px;
+    border-radius: 2px;
+    margin-left: 2px;
+    margin-right: 4px;
+}
+
+.song-nav .label {
+    width: 100%;
+    padding-left: 10%;
+    display: flex;
+    align-items: center;
+    border-radius: 2px;
+    margin-left: 2px;
+    margin-right: 4px;
+}
+
+.song-nav input[type="radio"]:checked + label .label{
+    background-color: rgb(44, 43, 43);
+    border-radius: 2px;
+    margin-left: 2px;
+    margin-right: 4px;
+}
+
+.song-nav input[type="radio"]:checked + label .label:hover {
+    background-color: rgb(43, 42, 42);
+}
+
+.song-nav .label:hover{
+    background-color: rgb(44, 43, 43);
+}
+
+.song-nav input{
+    display: none;
+}
+
+.music-tab-underline {
+    height: 30px;
+    width: 2px;
+    position: absolute;
+    right: 0%;
+    background-color: yellow;
+    border-radius: 2px;
+    transition-duration: 200ms;
+    transition-timing-function: linear;
+}
+
+#music-iframe{
+    width: 90%;
+    overflow: hidden;
+    z-index: 1;
+    height: 100%;
+}
+
+/* #canvas {
+    width: 100%;
+    height: 100%;
+    background-color: green;
+    position: absolute;
+    left: 0%;
+    top: 0%;
+} */

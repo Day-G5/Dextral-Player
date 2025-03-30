@@ -3,11 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
-    <link rel="stylesheet" href="../css/home.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../styles/home.css">
 </head>
-<body>
+<body id="home-body">
+    <nav class="home-nav">
+        <li>
+            <ol>
+                <input type="radio" name="home-nav-list" class="home-nav-list" id="home-nav-list-music" onchange="change_tabs()" value="./music.html">
+                <label for="home-nav-list-music" class="home-nav-label">
+                    <div>
+                        Music
+                    </div>
+                </label>
+            </ol>
+            <ol>
+                <input type="radio" name="home-nav-list" class="home-nav-list" id="home-nav-list-playqueue" onchange="change_tabs()" value="./queue.html">
+                <label for="home-nav-list-playqueue" class="home-nav-label">
+                    <div>
+                        Queue
+                    </div>
+                </label>
+            </ol>
+            <ol>
+                <input type="radio" name="home-nav-list" class="home-nav-list" id="home-nav-list-playlists" onchange="change_tabs()" value="./playlists.html">
+                <label for="home-nav-list-playlists" class="home-nav-label">
+                    <div>
+                        Playlists
+                    </div>
+                </label>
+
+            </ol>
+            <ol>
+                <input type="radio" name="home-nav-list" class="home-nav-list" id="home-nav-list-robot" onchange="change_tabs()" value="./robot.html">
+                <label for="home-nav-list-robot" class="home-nav-label">
+                    <div>
+                        Robot
+                    </div>
+                </label>
+            </ol>
+            <ol>
+                <input type="radio" name="home-nav-list" class="home-nav-list" id="home-nav-list-musicexplorer" onchange="change_tabs()" value="./explorer.html">
+                <label for="home-nav-list-musicexplorer" class="home-nav-label">
+                    <div>
+                        Explorer
+                    </div>
+                </label>
+            </ol>
+        </li>
+        <div class="home-nav-underline">
+
+        </div>
+    </nav>
+    <div id="drag-window"></div>
+    <div class="title-bar-icons">
+        <div id="minimize-app">
+            <svg viewBox="0 0 448 512" class="minimize-svg"><path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/></svg>
+        </div>
+        <div id="maximize-app">
+            <svg viewBox="0 0 200 200" class="maximize-svg"><g transform="translate(-8.846015,-43.552741)">
+                <circle
+                   style="fill:none;fill-rule:evenodd;stroke-width:18.5421;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:445.011, 445.011;stroke-dashoffset:185.421;stroke-opacity:1"
+                   id="circle33"
+                   cx="-97.660118"
+                   cy="-124.28301"
+                   transform="scale(-1)"
+                   r="71.45858" />
+                <ellipse
+                   style="fill:none;fill-rule:evenodd;stroke-width:20.3462;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+                   id="circle2730"
+                   cx="87.324829"
+                   cy="157.63243"
+                   rx="68.305717"
+                   ry="68.719131" />
+              </g>
+            </svg>
+        </div>
+        <div id="close-app">
+            <svg viewBox="0 0 500 500" class="close-svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+        </div>
+    </div>
+    <button id="listened_to_song"></button>
+    <div id="get-songs">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="add-songs"><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
+        <span id="add-songs-span">Add Songs</span>
+    </div>
+    <input type="search" id="search-box">
     
-    <script src="../js/home.js"></script>
+    <iframe id="home-pages" src="" frameborder="0">
+
+    </iframe>
+
+    <div class="player">
+        <input type="range" id="song-slider" value="" min="0" max="1000">
+        <label for="song-slider" id="song-slider-label">
+            <div class="slider-ball">
+
+            </div>
+        </label>
+    <div class="song-controls">
+        <label class="shuffle">
+            <input type="checkbox" class="shuffle-input" id="shuffle-checkbox" onchange="shuffle_audio()">
+         <svg viewBox="0 0 12.7 12.7" class="shuffle-svg-off" id="shuffle-svg">
+           <g>
+             <path
+                d="M 9.6166872,1.3957346 C 9.8786361,1.2865904 10.177695,1.3477074 10.378523,1.5463555 l 1.397061,1.3970618 c 0.130974,0.1309743 0.205194,0.3077901 0.205194,0.4933375 0,0.1855468 -0.07422,0.3623629 -0.205194,0.4933374 L 10.378523,5.3271533 C 10.177695,5.527981 9.8786361,5.58692 9.6166872,5.477774 9.3547381,5.3686287 9.1844708,5.1154116 9.1844708,4.8316329 V 4.1374679 H 8.4859399 c -0.2204738,0 -0.4278497,0.1025981 -0.5588246,0.2794126 L 7.0015621,5.6502242 6.1283986,4.4867337 6.8094659,3.5786433 C 7.2045728,3.0503796 7.8267016,2.7404065 8.4859399,2.7404065 h 0.6985309 v -0.698531 c 0,-0.281595 0.1702673,-0.5369954 0.4322164,-0.6461409 z m -5.2346159,5.4201629 0.8731638,1.1634903 -0.681068,0.90809 C 4.1790609,9.4157417 3.5569318,9.7257152 2.897693,9.7257152 H 1.5006316 c -0.386375,0 -0.69853099,-0.3121565 -0.69853099,-0.6985311 0,-0.386375 0.31215599,-0.6985309 0.69853099,-0.6985309 H 2.897693 c 0.2204743,0 0.4278502,-0.1025956 0.5588247,-0.2794121 z M 10.376339,10.919765 C 10.175511,11.120594 9.8764531,11.179532 9.6145042,11.070386 9.3525546,10.961241 9.182288,10.708024 9.182288,10.424246 V 9.7257152 H 8.4859399 c -0.6592383,0 -1.2813671,-0.3099735 -1.676474,-0.8382374 L 3.4565177,4.4168805 C 3.3255432,4.2400648 3.1181673,4.1374679 2.897693,4.1374679 H 1.5006316 c -0.386375,0 -0.69853099,-0.312156 -0.69853099,-0.6985305 0,-0.3863749 0.31215599,-0.6985309 0.69853099,-0.6985309 H 2.897693 c 0.6592388,0 1.2813679,0.3099731 1.6764741,0.8382368 L 7.9271153,8.0492411 C 8.0580896,8.2260567 8.2654661,8.3286532 8.4859399,8.3286532 H 9.1844708 V 7.6301223 c 0,-0.2815951 0.1702673,-0.5369958 0.4322164,-0.6461411 C 9.8786361,6.874837 10.177695,6.935954 10.378523,7.1346021 l 1.397061,1.3970616 c 0.130974,0.1309744 0.205194,0.3077901 0.205194,0.4933374 0,0.1855474 -0.07422,0.3623625 -0.205194,0.493337 l -1.397061,1.3970629 z"
+                style="stroke-width:0.0218291" />
+           </g>
+         </svg>
+        </label>
+        <div class="previous-song">
+            <svg viewBox="0 0 500 500" class="previous-svg"><path d="M267.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160L64 241V96c0-17.7-14.3-32-32-32S0 78.3 0 96V416c0 17.7 14.3 32 32 32s32-14.3 32-32V271l11.5 9.6 192 160z"/></svg>
+        </div>
+        <label class="play-pause" for="play-pause-checkbox">
+            <input type="checkbox" class="play-pause-input" checked = "checked" onclick="play_pause_audio()" id="play-pause-checkbox">
+            <svg viewBox="0 0 500 500" class="play-pause-svg">
+                <path class="play-svg" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/>
+                <path class="pause-svg" d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/>
+            </svg>
+        </label>
+        <div class="next-song">
+            <svg viewBox="0 0 500 500" class="next-svg"><path d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z"/></svg>
+        </div>
+        <div class="repeat">
+            <svg viewBox="0 0 512 512" class="repeat-svg">
+                <path class="repeat-icon-svg" d="M0 224c0 17.7 14.3 32 32 32s32-14.3 32-32c0-53 43-96 96-96H320v32c0 12.9 7.8 24.6 19.8 29.6s25.7 2.2 34.9-6.9l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-9.2-9.2-22.9-11.9-34.9-6.9S320 19.1 320 32V64H160C71.6 64 0 135.6 0 224zm512 64c0-17.7-14.3-32-32-32s-32 14.3-32 32c0 53-43 96-96 96H192V352c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6V448H352c88.4 0 160-71.6 160-160z"
+                   id="path2" />
+                   <text xml:space="preserve" class="repeat-number-svg"
+                   x="208.00114"
+                   y="280.57999"
+                   id="text19588"><tspan
+                     sodipodi:role="line"
+                     id="tspan19586"
+                     x="155.00114"
+                     y="360.57999"
+                     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:300.275px;font-family:'Segoe UI Historic';-inkscape-font-specification:'Segoe UI Historic, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:1.89412">1</tspan></text>
+            </svg>
+        </div>
+    </div>
+        <div class="current-song">
+            <div class="identifier-image">
+            </div>
+            <div class="song-identifiers">
+                <div class="identifier-name">
+                    <span id="identifier-name-text"></span>
+                </div>
+                <div class="identifier-artist">
+                    <span id="identifier-artist-text"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="volume-area">
+            <div class="volume-icon">
+                <svg class="all-volumes-svg" viewBox="0 0 640 512">
+                    <path class="mute-svg"
+                       d="m 302.17881,31.301638 c 11.5,5.2 18.9,16.6 18.9,29.2 V 444.50164 c 0,12.6 -7.4,24 -18.9,29.2 -11.5,5.2 -25,3.1 -34.4,-5.3 l -134.9,-119.9 H 65.078801 c -35.3,0 -63.9999996,-28.7 -63.9999996,-64 v -64 c 0,-35.3 28.6999996,-64 63.9999996,-64 h 67.800009 l 134.9,-119.900002 c 9.4,-8.4 22.9,-10.4 34.4,-5.3 z m 123.9,132.200002 55,55 55,-55 c 9.4,-9.4 24.6,-9.4 33.9,0 9.3,9.4 9.4,24.6 0,33.9 l -55,55 55,55 c 9.4,9.4 9.4,24.6 0,33.9 -9.4,9.3 -24.6,9.4 -33.9,0 l -55,-55 -55,55 c -9.4,9.4 -24.6,9.4 -33.9,0 -9.3,-9.4 -9.4,-24.6 0,-33.9 l 55,-55 -55,-55 c -9.4,-9.4 -9.4,-24.6 0,-33.9 9.4,-9.3 24.6,-9.4 33.9,0 z"
+                       id="path37" />
+                    <path class="volume-low-svg"
+                       d="m 302.17881,31.30164 c 11.5,5.2 18.9,16.6 18.9,29.2 v 384.00002 c 0,12.6 -7.4,24 -18.9,29.2 -11.5,5.2 -25,3.1 -34.4,-5.3 l -134.9,-119.90002 h -67.8 c -35.3,0 -64,-28.7 -64,-64 v -64 c 0,-35.3 28.7,-64 64,-64 h 67.8 l 134.9,-119.9 c 9.4,-8.4 22.9,-10.4 34.4,-5.3 z m 111.5,146.7 c 21.5,17.6 35.4,44.4 35.4,74.5 0,30.1 -13.9,56.9 -35.4,74.5 -10.3,8.4 -25.4,6.8 -33.8,-3.5 -8.4,-10.3 -6.8,-25.4 3.5,-33.8 10.8,-8.8 17.7,-22.2 17.7,-37.2 0,-15 -6.9,-28.4 -17.7,-37.3 -10.3,-8.4 -11.8,-23.5 -3.5,-33.8 8.3,-10.3 23.5,-11.8 33.8,-3.5 z"
+                       id="path4782" />
+                    <path class="volume-svg"
+                       d="m 474.17883,103.50164 c 43.2,35.2 70.9,88.9 70.9,149 0,60.1 -27.7,113.8 -70.9,149 -10.3,8.4 -25.4,6.8 -33.8,-3.5 -8.4,-10.3 -6.8,-25.4 3.5,-33.8 32.5,-26.4 53.2,-66.6 53.2,-111.7 0,-45.1 -20.7,-85.3 -53.2,-111.8 -10.3,-8.4 -11.8,-23.5 -3.5,-33.8 8.3,-10.3 23.5,-11.8 33.8,-3.5 z m -60.5,74.5 c 21.5,17.6 35.4,44.4 35.4,74.5 0,30.1 -13.9,56.9 -35.4,74.5 -10.3,8.4 -25.4,6.8 -33.8,-3.5 -8.4,-10.3 -6.8,-25.4 3.5,-33.8 10.8,-8.8 17.7,-22.2 17.7,-37.2 0,-15 -6.9,-28.4 -17.7,-37.3 -10.3,-8.4 -11.8,-23.5 -3.5,-33.8 8.3,-10.3 23.5,-11.8 33.8,-3.5 z m -111.5,-146.7 c 11.5,5.2 18.9,16.6 18.9,29.2 v 384 c 0,12.6 -7.4,24 -18.9,29.2 -11.5,5.2 -25,3.1 -34.4,-5.3 l -134.90002,-119.9 H 65.078817 c -35.3,0 -64,-28.7 -64,-64 v -64 c 0,-35.3 28.7,-64 64,-64 h 67.799993 l 134.90002,-119.9 c 9.4,-8.4 22.9,-10.4 34.4,-5.3 z"
+                       id="path4917"
+                       sodipodi:nodetypes="cscscscscccscscscscccsssccssssccc" />
+                    <path class="volume-high-svg"
+                       d="m 534.67881,29.001633 c 64.9,52.7 106.4,133.300007 106.4,223.500007 0,90.2 -41.5,170.7 -106.4,223.5 -10.3,8.4 -25.4,6.8 -33.8,-3.5 -8.4,-10.3 -6.8,-25.4 3.5,-33.8 54.2,-44 88.7,-111 88.7,-186.2 0,-75.2 -34.5,-142.2 -88.7,-186.300007 -10.3,-8.4 -11.8,-23.5 -3.5,-33.8 8.3,-10.3 23.5,-11.8 33.8,-3.5 z m -60.5,74.500007 c 43.2,35.2 70.9,88.9 70.9,149 0,60.1 -27.7,113.8 -70.9,149 -10.3,8.4 -25.4,6.8 -33.8,-3.5 -8.4,-10.3 -6.8,-25.4 3.5,-33.8 32.5,-26.4 53.2,-66.6 53.2,-111.7 0,-45.1 -20.7,-85.3 -53.2,-111.8 -10.3,-8.4 -11.8,-23.5 -3.5,-33.8 8.3,-10.300004 23.5,-11.800004 33.8,-3.5 z m -60.5,74.5 c 21.5,17.6 35.4,44.4 35.4,74.5 0,30.1 -13.9,56.9 -35.4,74.5 -10.3,8.4 -25.4,6.8 -33.8,-3.5 -8.4,-10.3 -6.8,-25.4 3.5,-33.8 10.8,-8.8 17.7,-22.2 17.7,-37.2 0,-15 -6.9,-28.4 -17.7,-37.3 -10.3,-8.4 -11.8,-23.5 -3.5,-33.8 8.3,-10.3 23.5,-11.8 33.8,-3.5 z m -111.5,-146.700007 c 11.5,5.2 18.9,16.6 18.9,29.2 V 444.50164 c 0,12.6 -7.4,24 -18.9,29.2 -11.5,5.2 -25,3.1 -34.4,-5.3 l -134.9,-119.9 h -67.8 c -35.3,0 -64,-28.7 -64,-64 v -64 c 0,-35.3 28.7,-64 64,-64 h 67.8 l 134.9,-119.900007 c 9.4,-8.4 22.9,-10.4 34.4,-5.3 z"
+                       id="path4940" />
+                </svg>
+            </div>
+
+            <div class="volume-bar">
+                <div class="volume-ball">
+
+                </div>
+                <div class="volume-meter">
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="../style scripts/homescript.js"></script>
+    <script src="../electron/renderer.js"></script>
+    <!-- <script src="../style scripts/loadsongs.js"></script> -->
 </body>
 </html>
